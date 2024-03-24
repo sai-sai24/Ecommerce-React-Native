@@ -1,40 +1,36 @@
-import React from "react";
-import {StyleSheet, View, Text} from "react-native";
-import {NavigationContainer} from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ProductsList } from "./screens/ProductsList.js";
-import { ProductDetails } from "./screens/ProductDetails.js";
-import { Cart } from "./screens/Cart.js";
-import { CartProvider } from "./CartContext.js";
-import { CartIcon } from "./components/CartIcon.js";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
-const Stack = createNativeStackNavigator();
+import Header from './Shared/Header';
+import { NativeBaseProvider, extendTheme, } from "native-base";
+import { NavigationContainer } from '@react-navigation/native'
+import Main from './Navigators/Main';
 
-function App(){
-  return(
-    <CartProvider>
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Products" component={ProductsList} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
-          <Stack.Screen name="ProductDetails" component={ProductDetails} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
-          <Stack.Screen name="Cart" component={Cart} options={({navigation}) => ({title: 'Products', headerRight: () => <CartIcon navigation={navigation} />})} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </CartProvider>
-  )
-}
-
-const styles = StyleSheet.create({
-  Container: {
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
+import { Provider } from "react-redux";
+import store from "./Redux/store";
+import Toast from "react-native-toast-message"
+import Auth from './Context/Store/Auth';
+const theme = extendTheme({ colors: newColorTheme });
+const newColorTheme = {
+  brand: {
+    900: "#8287af",
+    800: "#7c83db",
+    700: "#b3bef6",
   },
-  text: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  }
-})
-
-export default App;
+};
+export default function App() {
+  return (
+    <Auth>
+      <Provider store={store}>
+        <NativeBaseProvider theme={theme}>
+          <NavigationContainer>
+            <Header />
+            <Main />
+            <Toast />
+          </NavigationContainer>
+        </NativeBaseProvider>
+      </Provider>
+    </Auth>
+  );
+}
