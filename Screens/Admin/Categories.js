@@ -11,7 +11,6 @@ import EasyButton from "../../Shared/StyledComponents/EasyButton"
 import baseURL from "../../assets/common/baseurl";
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage'
-// import { add } from "react-native-reanimated";
 
 var { width } = Dimensions.get("window")
 
