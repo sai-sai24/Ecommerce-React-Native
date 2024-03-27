@@ -3,15 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 
 import Header from './Shared/Header';
-import { NativeBaseProvider, extendTheme, } from "native-base";
-import { NavigationContainer } from '@react-navigation/native'
+import { NativeBaseProvider, extendTheme } from "native-base";
+import { NavigationContainer } from '@react-navigation/native';
 import Main from './Navigators/Main';
 
 import { Provider } from "react-redux";
 import store from "./Redux/store";
-import Toast from "react-native-toast-message"
+import Toast from "react-native-toast-message";
 import Auth from './Context/Store/Auth';
-const theme = extendTheme({ colors: newColorTheme });
+
 const newColorTheme = {
   brand: {
     900: "#8287af",
@@ -19,18 +19,19 @@ const newColorTheme = {
     700: "#b3bef6",
   },
 };
+
+const theme = extendTheme({ colors: newColorTheme });
+
 export default function App() {
   return (
-    <Auth>
-      <Provider store={store}>
-        <NativeBaseProvider theme={theme}>
-          <NavigationContainer>
-            <Header />
-            <Main />
-            <Toast />
-          </NavigationContainer>
-        </NativeBaseProvider>
-      </Provider>
-    </Auth>
+    <Provider store={store}>
+      <NativeBaseProvider theme={theme}>
+        <NavigationContainer>
+          <Header />
+          <Main />
+          <Toast />
+        </NavigationContainer>
+      </NativeBaseProvider>
+    </Provider>
   );
 }
