@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "rn2024-s",
-    "slug": "rn2024-s",
+    "name": "ecommerse-course",
+    "slug": "ecommerse-course",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.melfx.rn2024s"
+      "package": "com.sai-sai24.Ecommerce-React-Native"
     },
     "web": {
       "favicon": "./assets/favicon.png"
